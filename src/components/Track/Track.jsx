@@ -1,19 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import style from './track.module.scss'
 import { IconButton } from '@mui/material'
-import { PlayArrow } from '@mui/icons-material'
+import { PlayArrow, Pause } from '@mui/icons-material'
+import cn from 'classnames'
 import secondsToMMSS from '../../utils/secondsToMMSS'
+
+import { AudioContext } from '../../context/AudioContext'
 
 export default function Track(track) {
 
     const {id, src, preview, title, artists, duration } = track
 
+    const { handleToggleAudio, currentTrack, isPlaying } = useContext(AudioContext)
+
+    const isCurrentTrack = currentTrack.id === track.id
+
     const formattedDuration = secondsToMMSS(duration)
 
   return (
-    <div className={style.track}>
-        <IconButton>
-            <PlayArrow />
+    <div className={cn(style.track, isCurrentTrack && style.playing)}>
+        <IconButton onClick={() => handleToggleAudio(track)}>
+            { isCurrentTrack && isPlaying ? <Pause /> : <PlayArrow />}
         </IconButton>
         <img className={style.preview} src={preview} alt='' />
         <div className={style.credits}>

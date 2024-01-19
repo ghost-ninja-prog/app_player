@@ -1,4 +1,4 @@
-import MainPage from "./pages/MainPage"
+import MainPage from "./pages/MainPage/MainPage"
 import style from "./global.module.scss"
 
 function App() {

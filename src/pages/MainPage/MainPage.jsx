@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import tracksList from '../../assets/tracksList'
 
 import style from './style.module.scss'
